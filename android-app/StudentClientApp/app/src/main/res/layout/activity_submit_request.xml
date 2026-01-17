@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📨"
+                android:textSize="60sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit Request"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit complaints or requests securely"
+                android:textSize="14sp"
+                android:textColor="#BBFFFFFF"/>
+        </LinearLayout>
+
+        <!-- Request Form Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Request Type -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📋 Request Type"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <Spinner
+                    android:id="@+id/spRequestType"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📌 Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etRequestTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter a brief title for your request"
+                    android:background="@drawable/edittext_background"
+                    android:padding="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:maxLength="100"/>
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📄 Description"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etRequestDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:hint="Describe your issue or request in detail\n\nTips:\n• Be specific about the problem\n• Include relevant details\n• Mention dates if applicable\n• Suggest preferred solution if any"
+                    android:background="@drawable/edittext_background"
+                    android:padding="16dp"
+                    android:gravity="top"
+                    android:layout_marginBottom="24dp"
+                    android:inputType="textMultiLine"
+                    android:maxLength="1000"/>
+
+                <!-- Character Counter -->
+                <TextView
+                    android:id="@+id/tvCharCounter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0/1000 characters"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:gravity="end"
+                    android:layout_marginBottom="24dp"/>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="❌ Cancel"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#F44336"
+                        android:layout_marginEnd="8dp"
+                        android:padding="16dp"/>
+
+                    <Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="✅ Submit"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#4CAF50"
+                        android:layout_marginStart="8dp"
+                        android:padding="16dp"/>
+                </LinearLayout>
+
+                <!-- Status -->
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ready to submit"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/status_background"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Guidelines -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📋 Submission Guidelines"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• All requests are confidential and encrypted\n• You'll receive a response within 48 hours\n• Keep your request ID for reference\n• Use clear and professional language\n• Attach supporting documents if needed"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Security Badge -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔐 Secured with AES-256 Encryption"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#88FFFFFF"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StudentClientApp</string>
+    <string name="app_tagline">Secure Student System • Network Security</string>
+    <string name="encryption_status">AES-256 • SHA-256 • Secure Socket</string>
+    <string name="connection_secure">🔐 Connection Secured</string>
+    <string name="connection_insecure">⚠️ Connection Insecure</string>
+</resources>
