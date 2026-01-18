@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DashboardActivity extends AppCompatActivity {
+
     private TextView tvWelcome, tvResponse, tvGPA, tvAttendance, tvConnectionStatus, tvUserInfo;
     private CardView cardViewData, cardSubmitRequest, cardViewRequests;
     private CardView cardGPA, cardAttendance;
@@ -112,6 +117,40 @@ public class DashboardActivity extends AppCompatActivity {
         } else if (cardId == R.id.cardViewRequests) {
             viewRequests();
         }
+    }
+
+    private void setup3DCardAnimation() {
+        cardGPA.setOnClickListener(v -> flipCard(cardGPA, "GPA Details"));
+        cardAttendance.setOnClickListener(v -> flipCard(cardAttendance, "Attendance Details"));
+    }
+
+    private void flipCard(CardView card, String backText) {
+        ObjectAnimator flip = ObjectAnimator.ofFloat(card, "rotationY", 0f, 180f);
+        flip.setDuration(600);
+        flip.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                // Change text on back
+                for (int i = 0; i < card.getChildCount(); i++) {
+                    View child = card.getChildAt(0);
+                    if (child instanceof LinearLayout) {
+                        TextView tv = ((LinearLayout) child).findViewById(R.id.tvGPA);
+                        if (tv != null) {
+                            String current = tv.getText().toString();
+                            tv.setText(current.contains("⭐") ? backText : "⭐ " + tvGPA.getText());
+                        }
+                    }
+                }
+
+                // Flip back after 2 seconds
+                new Handler().postDelayed(() -> {
+                    ObjectAnimator flipBack = ObjectAnimator.ofFloat(card, "rotationY", 180f, 360f);
+                    flipBack.setDuration(600);
+                    flipBack.start();
+                }, 2000);
+            }
+        });
+        flip.start();
     }
 
     private void updateConnectionStatus() {

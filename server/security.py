@@ -119,7 +119,7 @@ class SecurityHandler:
         if not input_str:
             return ""
         
-        # Remove SQL injection patterns (case-insensitive)
+        # Remove SQL injection patterns
         sql_patterns = [
             r'(?i)\bDROP\b', r'(?i)\bDELETE\b', r'(?i)\bINSERT\b',
             r'(?i)\bUPDATE\b', r'(?i)\bSELECT\b', r'(?i)\bUNION\b',

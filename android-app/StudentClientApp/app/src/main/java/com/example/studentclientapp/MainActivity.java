@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 tvStatus.setText("🔄 Testing connection...");
                 tvStatus.setTextColor(Color.BLUE);
-                btnTestConnection.setEnabled(false); // Disable button while testing
+                btnTestConnection.setEnabled(false);
             }
         });
 

@@ -79,7 +79,6 @@ class StudentSocketServer:
                 # Try to decode
                 request_str = data.decode('utf-8').strip()
                 
-                # DEBUG: Print what we received
                 print(f"[{client_id}] Received data (length: {len(request_str)})")
                 
                 # SPECIAL CASE: If it's "TEST" (from test connection)
@@ -304,7 +303,7 @@ class StudentSocketServer:
                 return self.create_response("error", message)
             
             username = params['username']
-            password = params['password']  # This should already be hashed from client
+            password = params['password']
             
             print(f"[DEBUG] Authenticating user: {username}")
             

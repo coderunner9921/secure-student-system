@@ -24,7 +24,7 @@ public class SocketClient {
     private static final String ENCRYPTION_KEY = "0123456789abcdef0123456789abcdef"; // 32 bytes for AES-256
     private static final String ENCRYPTION_ALGORITHM = "AES/CBC/PKCS5Padding";
 
-    // Use your computer's IP - VERY IMPORTANT!
+    // Computer's IP 
     private String serverIp = "192.168.29.126";
     private int serverPort = 12345;
 
@@ -137,7 +137,6 @@ public class SocketClient {
         }
     }
 
-    // Replace the testConnection method with this version:
     public void testConnection(final SocketCallback callback) {
         new AsyncTask<Void, Void, String>() {
             @Override
@@ -156,12 +155,11 @@ public class SocketClient {
                     socket.setSoTimeout(3000); // Reduced timeout for test
 
                     out = new PrintWriter(socket.getOutputStream(), true);
-                    // Use InputStreamReader directly instead of BufferedReader
+
                     InputStreamReader streamReader = new InputStreamReader(socket.getInputStream());
                     StringBuilder responseBuilder = new StringBuilder();
                     char[] buffer = new char[1024];
 
-                    // Send plain "TEST" message
                     Log.d(TAG, "Sending test connection message: TEST");
                     out.println("TEST");
                     out.flush();
@@ -174,7 +172,7 @@ public class SocketClient {
                     while ((bytesRead = streamReader.read(buffer)) != -1) {
                         responseBuilder.append(buffer, 0, bytesRead);
 
-                        // Check if we have a complete response (look for newline or end of stream)
+                        // Check if we have a complete response
                         String currentResponse = responseBuilder.toString();
                         if (currentResponse.contains("\n") ||
                                 currentResponse.length() >= 200 || // Expected max response size
@@ -201,7 +199,7 @@ public class SocketClient {
                             response.substring(0, Math.min(50, response.length())) + "...");
 
                     // Try to decrypt if it's encrypted
-                    if (response.length() > 50) { // Likely encrypted
+                    if (response.length() > 50) { 
                         String decrypted = decryptAES(response.trim());
                         if (decrypted != null) {
                             Log.d(TAG, "Decrypted response: " + decrypted);
@@ -244,7 +242,6 @@ public class SocketClient {
 
             @Override
             protected void onPostExecute(String result) {
-                // Ensure we're on UI thread
                 if (result.startsWith("SUCCESS")) {
                     callback.onResponse(result);
                 } else {
